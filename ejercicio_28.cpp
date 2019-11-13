@@ -1,15 +1,26 @@
+//Este codigo fue proporcionado por el profesor del lab en clase, dice que es un template qu enos puede ser util en el futuro.
+
 // RK4
+
 #include <iostream>
 #include <fstream>
 #include <cmath>
+
 using namespace std;
 
+
+
 // variable constantes globales
-const int N = 2;
-const double K = 100;
-const double M = 2;
-const double LAMBDA = 1;
-const double DeltaT = 0.01;
+const float v_0 = 22.0;
+const float angle = 45.0;
+const float grav = 9.8;
+const float k_f = 0.9;
+const float N = 25.0;
+const float v_0x = v_0*cos(angle*M_PI/180);
+const float v_0y = v_0*sin(angle*M_PI/180);
+const float T = 2.0*v_0y/grav;
+const float H = v_0y*v_0y/(2.0*grav);
+const float R = 2.0*v_0x*v_0y/grav;
 
 // declaracion de funciones
 double f(double t, double y[], int i);
@@ -20,7 +31,7 @@ void rk4_vector(double t, double h, double y[]); // metodo de runge kutta 4 orde
 
 int main(void)
 {
-  ofstream fout("datos-array.txt");
+  ofstream fout("Clase_28.dat");
   double x = 1, v = 0;
   double time;
   double y[N] = {1, 0};
