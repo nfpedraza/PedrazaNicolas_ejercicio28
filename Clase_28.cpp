@@ -90,8 +90,9 @@ int main(void)
   ofstream fout("Clase_28.dat");
   double d_x = 0, vx = v_0x , d_y = 0, vy = v_0y;
   double time;
-  for(time = 0; time <= 1.85; time += DeltaT) {
-    fout << time << "      " << d_x << "      " << vx << "      " << d_y << "      " << vy << "      " << time*vx << "      " << vy*time+((-grav*time*time)/2) << endl;
+  for(time = 0; time <= T; time += DeltaT) {
+    fout << time << "      " << d_x << "      " << vx << "      " << d_y << "      " << vy << "      " << time*10 << "      " << 10*time+((-grav*time*time)/2) << endl;
+      
     rk4(time, DeltaT, d_x, vx, d_y, vy);
   }
     cout<<"Rango R=  "<<R<<"\n";
