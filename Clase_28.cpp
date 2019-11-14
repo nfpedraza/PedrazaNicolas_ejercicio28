@@ -10,7 +10,7 @@ using namespace std;
 
 
 // variable constantes globales
-const float v_0 = 30.0;
+const float v_0 = 22.0;
 const float angle = 45.0;
 const float grav = 9.8;
 const float k_f = 0.9;

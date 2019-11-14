@@ -13,7 +13,7 @@ x=v_0x*t
 y=v_0y*t+((-9.8*(t**2)/2))
 
 
-plt.figure(1, figsize=(10,8)) 
+plt.figure(1, figsize=(8,5)) 
 plt.plot(data[:,1], data[:,3],label=(" With air resistance "))
 plt.plot(x, y,label=(" Ideal "))
 plt.xlabel('X')
