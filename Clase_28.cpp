@@ -14,13 +14,13 @@ const float v_0 = 30.0;
 const float angle = 45.0;
 const float grav = 9.8;
 const float k_f = 0.9;
-const float N = 25.0;
+const float N = 10.0;
 const float v_0x = v_0*cos(angle*M_PI/180);
 const float v_0y = v_0*sin(angle*M_PI/180);
 const float T = 2.0*v_0y/grav;
 const float H = v_0y*v_0y/(2.0*grav);
 const float R = 2.0*v_0x*v_0y/grav;
-const double DeltaT = 0.1;
+const double DeltaT = 0.01;
 const float magv = sqrt(pow(v_0x,2)+pow(v_0y,2));
 
 // declaracion de funciones
@@ -90,8 +90,8 @@ int main(void)
   ofstream fout("Clase_28.dat");
   double d_x = 0, vx = v_0x , d_y = 0, vy = v_0y;
   double time;
-  for(time = 0; time <= 1.8; time += DeltaT) {
-    fout << time << "\t" << d_x << "\t" << vx << "\t" << d_y << "\t" << vy << endl;
+  for(time = 0; time <= 1.82; time += DeltaT) {
+    fout << time << "      " << d_x << "      " << vx << "      " << d_y << "      " << vy << "      " << time*vx << "      " << vy*time-((grav*time*time)/2) << endl;
     rk4(time, DeltaT, d_x, vx, d_y, vy);
   }
     cout<<"Rango R=  "<<R<<"\n";
