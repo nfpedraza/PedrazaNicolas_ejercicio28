@@ -20,7 +20,7 @@ const float v_0y = v_0*sin(angle*M_PI/180);
 const float T = 2.0*v_0y/grav;
 const float H = v_0y*v_0y/(2.0*grav);
 const float R = 2.0*v_0x*v_0y/grav;
-const double DeltaT = 0.01;
+const double DeltaT = 0.1;
 const float magv = sqrt(pow(v_0x,2)+pow(v_0y,2));
 
 // declaracion de funciones
@@ -88,11 +88,11 @@ void rk4(double t, double h, double & x0, double & x1,double & y0, double & y1) 
 int main(void)
 {
   ofstream fout("Clase_28.dat");
-  double x1 = 1, vx = 0 , y1 = 1, vy = 0;
+  double d_x = 100, vx = 22 , d_y = 100, vy = 22;
   double time;
   for(time = 0; time <= 10; time += DeltaT) {
-    fout << time << "\t" << x1 << "\t" << vx << "\t" << y1 << "\t" << vy << endl;
-    rk4(time, DeltaT, x1, vx, y1, vy);
+    fout << time << "\t" << d_x << "\t" << vx << "\t" << d_y << "\t" << vy << endl;
+    rk4(time, DeltaT, d_x, vx, d_y, vy);
   }
   fout.close();
 
