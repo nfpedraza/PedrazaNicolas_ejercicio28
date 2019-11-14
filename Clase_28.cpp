@@ -9,7 +9,6 @@
 using namespace std;
 
 
-
 // variable constantes globales
 const float v_0 = 22.0;
 const float angle = 45.0;
@@ -23,11 +22,12 @@ const float H = v_0y*v_0y/(2.0*grav);
 const float R = 2.0*v_0x*v_0y/grav;
 
 // declaracion de funciones
-double f(double t, double y[], int i);
-double f0(double t, double y0, double y1); // derivada de y0
-double f1(double t, double y0, double y1); // derivada de y1
-void rk4(double t, double h, double & y0, double & y1); // metodo de runge kutta 4 orden
-void rk4_vector(double t, double h, double y[]); // metodo de runge kutta 4 orden
+
+double fx0(double t, double x0, double x1); // derivada de x0
+double fx1(double t, double x0, double x1); // derivada de x1
+double fy0(double t, double y0, double y1); // derivada de y0
+double fy1(double t, double y0, double y1); // derivada de y1
+void rk4(double t, double h, double & x0, double & x1, double & y0, double & y1); // metodo de runge kutta 4 orden
 
 int main(void)
 {
@@ -55,14 +55,24 @@ void funcion_inc(){
 	float d2y = -grav -k_f*v_0y*(v_0y/magv);
 }
 
-double f0(double t, double y0, double y1)
+double fx0(double t, double x0, double x1)
+{
+  return x1;
+}
+
+double fx1(double t, double x0, double x1)
+{
+  return -k_f*v_0x*(v_0x/magv);
+}
+
+double fy0(double t, double y0, double y1)
 {
   return y1;
 }
 
-double f1(double t, double y0, double y1)
+double fy1(double t, double y0, double y1)
 {
-  return (-K/M)*pow(y0, LAMBDA);
+  return -grav -k_f*v_0y*(v_0y/magv);
 }
 
 
@@ -71,8 +81,8 @@ void rk4(double t, double h, double & x0, double & x1,double & y0, double & y1) 
 {
   double kx10, kx11, kx20, kx21, kx30, kx31, kx40, kx41, ky10, ky11, ky20, ky21, ky30, ky31, ky40, ky41;
 	
-  kx10 = h*f0(t, x0, y1);
-  kx11 = h*f1(t, x0, y1);
+  kx10 = h*f0(t, x0, x1);
+  kx11 = h*f1(t, x0, x1);
   kx20 = h*f0(t+h/2, x0 + kx10/2, x1 + kx11/2);
   kx21 = h*f1(t+h/2, x0 + kx10/2, x1 + kx11/2);
   kx30 = h*f0(t+h/2, x0 + kx20/2, x1 + kx21/2);
