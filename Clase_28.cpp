@@ -10,10 +10,10 @@ using namespace std;
 
 
 // variable constantes globales
-const float v_0 = 22.0;
+const float v_0 = 10/cos(M_PI/4);
 const float angle = 45.0;
 const float grav = 9.8;
-const float k_f = 0.9;
+const float k_f = 0.7;
 const float N = 10.0;
 const float v_0x = v_0*cos(angle*M_PI/180);
 const float v_0y = v_0*sin(angle*M_PI/180);
@@ -90,8 +90,8 @@ int main(void)
   ofstream fout("Clase_28.dat");
   double d_x = 0, vx = v_0x , d_y = 0, vy = v_0y;
   double time;
-  for(time = 0; time <= 1.82; time += DeltaT) {
-    fout << time << "      " << d_x << "      " << vx << "      " << d_y << "      " << vy << "      " << time*vx << "      " << vy*time-((grav*time*time)/2) << endl;
+  for(time = 0; time <= 1.85; time += DeltaT) {
+    fout << time << "      " << d_x << "      " << vx << "      " << d_y << "      " << vy << "      " << time*vx << "      " << vy*time+((-grav*time*time)/2) << endl;
     rk4(time, DeltaT, d_x, vx, d_y, vy);
   }
     cout<<"Rango R=  "<<R<<"\n";

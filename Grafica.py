@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 
 data = np.loadtxt("Clase_28.dat")
 angle= 45
-v_0= 22
+v_0= 10/np.cos(np.pi/4)
 v_0x = v_0*np.cos(angle*np.pi/180);
 v_0y = v_0*np.sin(angle*np.pi/180);
 tmax= np.abs(2*v_0y/-9.8)
@@ -13,10 +13,11 @@ x=v_0x*t
 y=v_0y*t+((-9.8*(t**2)/2))
 
 
-plt.figure(1, figsize=(8,5)) 
-plt.plot(data[:,1], data[:,3],label=(" With air resistance "))
-plt.plot(x, y,label=(" Ideal "))
+plt.figure(1, figsize=(10,5)) 
+plt.plot(data[:,1], data[:,3],label=(" With air resistance "),c='green')
+#plt.plot(data[:,5], data[:,6],label=(" Ideal "),c='red')
+plt.plot(x, y,label=(" Ideal "),c='red')
 plt.xlabel('X')
 plt.ylabel('Y')
 plt.legend(loc='0')
-plt.savefig("grafica.png")
+plt.savefig("friccion.png")
