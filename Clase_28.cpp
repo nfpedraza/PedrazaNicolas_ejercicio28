@@ -10,7 +10,7 @@ using namespace std;
 
 
 // variable constantes globales
-const float v_0 = 22.0;
+const float v_0 = 30.0;
 const float angle = 45.0;
 const float grav = 9.8;
 const float k_f = 0.9;
@@ -51,7 +51,7 @@ double fy0(double t, double y0, double y1)
 
 double fy1(double t, double y0, double y1)
 {
-  return -grav -k_f*v_0y*(v_0y/magv);
+  return -grav-k_f * v_0y * (v_0y/magv);
 }
 
 
@@ -88,12 +88,14 @@ void rk4(double t, double h, double & x0, double & x1,double & y0, double & y1) 
 int main(void)
 {
   ofstream fout("Clase_28.dat");
-  double d_x = 0, vx = 22 , d_y = 0, vy = 22;
+  double d_x = 0, vx = v_0x , d_y = 0, vy = v_0y;
   double time;
-  for(time = 0; time <= 10; time += DeltaT) {
+  for(time = 0; time <= 1.8; time += DeltaT) {
     fout << time << "\t" << d_x << "\t" << vx << "\t" << d_y << "\t" << vy << endl;
     rk4(time, DeltaT, d_x, vx, d_y, vy);
   }
+    cout<<"Rango R=  "<<R<<"\n";
+    cout<<"Pico T=  "<<T<<"\n";
   fout.close();
 
   return 0;
